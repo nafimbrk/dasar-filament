@@ -208,7 +208,8 @@ class FakturResource extends Resource
                 TextColumn::make('kode_customer'),
                 TextColumn::make('customer.nama_customer'),
                 TextColumn::make('ket_faktur'),
-                TextColumn::make('total'),
+                TextColumn::make('total')
+                ->formatStateUsing(fn (FakturModel $record): string => 'Rp ' . number_format($record->total, 0, '.', '.')),
                 TextColumn::make('nominal_charge'),
                 TextColumn::make('charge'),
                 TextColumn::make('total_final')

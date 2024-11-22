@@ -40,6 +40,20 @@ class AdminPanelProvider extends PanelProvider
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
+            ->spa()
+            ->sidebarCollapsibleOnDesktop()
+            ->colors([
+                'danger' => Color::Rose,
+                'gray' => Color::Gray,
+                'info' => Color::Blue,
+                'primary' => Color::Lime,
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
+            ])
+            ->font('Poppins')
+            ->viteTheme('resources/css/filament/admin/theme.css')
+            // ->topNavigation()
+            // ->sidebarWidth('10rem')
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

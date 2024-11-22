@@ -35,7 +35,7 @@ class BarangResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nama_barang'),
+                TextColumn::make('nama_barang')->label('Nama'),
                 TextColumn::make('kode_barang'),
                 TextColumn::make('harga_barang')
             ])

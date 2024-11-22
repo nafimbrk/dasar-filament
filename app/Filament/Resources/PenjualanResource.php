@@ -10,6 +10,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -60,13 +61,29 @@ class PenjualanResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        '0' => 'danger',
+                        '1' => 'info',
+                    })
+                    ->formatStateUsing(fn (PenjualanModel $record): string => $record->status == 0 ? 'Belum Lunas' : 'Lunas')
                     ->label('Status')
+            ])
+            ->emptyStateHeading('Tidak Ada Data Laporan')
+            ->emptyStateDescription('Silahkan Tambahkan Faktur Terlebih Dahulu')
+            ->emptyStateIcon('heroicon-o-presentation-chart-bar')
+            ->emptyStateActions([
+                Action::make('create')
+                    ->label('Buat Faktur')
+                    ->url(route('filament.admin.resources.fakturs.create'))
+                    ->icon('heroicon-m-plus')
+                    ->button(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
