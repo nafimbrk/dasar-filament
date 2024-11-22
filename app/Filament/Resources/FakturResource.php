@@ -30,6 +30,10 @@ class FakturResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Faktur';
+
+    protected static ?string $navigationGroup = 'Faktur';
+
     public static function form(Form $form): Form
     {
         return $form

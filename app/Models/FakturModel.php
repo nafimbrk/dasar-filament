@@ -23,4 +23,9 @@ class FakturModel extends Model
     {
         return $this->hasMany(DetailFakturModel::class, 'faktur_id');
     }
+
+    public function penjualan()
+    {
+        return $this->hasMany(PenjualanModel::class, 'faktur_id');
+    }
 }
